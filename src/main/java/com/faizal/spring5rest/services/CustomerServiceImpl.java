@@ -3,7 +3,7 @@ package com.faizal.spring5rest.services;
 import com.faizal.spring5rest.api.v1.mapper.CustomerMapper;
 import com.faizal.spring5rest.api.v1.model.CustomerDTO;
 import com.faizal.spring5rest.domain.Customer;
-import com.faizal.spring5rest.exceptions.NotFoundException;
+import com.faizal.spring5rest.exceptions.NotValidException;
 import com.faizal.spring5rest.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +43,7 @@ public class CustomerServiceImpl implements CustomerService {
                     customerDTO.setUrl("/api/v1/customers/" + customer.getId());
                     return customerDTO;
                 })
-                .orElseThrow(NotFoundException::new);
+                .orElseThrow(NotValidException::new);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class CustomerServiceImpl implements CustomerService {
             dto.setUrl("/api/v1/customers/" + id);
 
             return dto;
-        }).orElseThrow(NotFoundException::new); //todo implement better exception handling;
+        }).orElseThrow(NotValidException::new); //todo implement better exception handling;
     }
 
     @Override
