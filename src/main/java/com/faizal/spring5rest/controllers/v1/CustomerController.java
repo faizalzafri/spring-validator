@@ -6,7 +6,6 @@ import com.faizal.spring5rest.services.CustomerService;
 import com.faizal.spring5rest.validator.CustomerDTOValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -38,6 +37,9 @@ public class CustomerController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CustomerDTO createNewCustomer(@RequestBody CustomerDTO customerDTO) {
+
+        customerDTOValidator.validate(customerDTO);
+
         return customerService.createNewCustomer(customerDTO);
     }
 
